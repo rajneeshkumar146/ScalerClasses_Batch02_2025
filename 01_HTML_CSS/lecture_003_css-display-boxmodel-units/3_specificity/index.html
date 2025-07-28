@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Example Stylesheet</title>
+
+    <!-- Inheritance < Class < Class Combinations < Id < Id Combination <  -->
+    <style>
+        #my-id {
+            color: violet;
+        }
+
+        .my-class {
+            color: blue;
+        }
+
+        .parent {
+            color: lightgoldenrodyellow
+        }
+
+        /* !important */
+        p {
+            color: red !important;
+        }
+
+        p.my-class {
+            color: gray;
+        }
+
+        /*  Here Order matter because both have same searchable element. */
+        p#my-id {
+            color: black
+        }
+
+        p#my-id {
+            color: aqua
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+
+        <p class="my-class" id="my-id">This is a paragraph</p>
+    </div>
+</body>
+
+</html>
