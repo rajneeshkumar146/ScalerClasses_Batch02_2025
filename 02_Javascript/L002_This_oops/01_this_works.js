@@ -48,20 +48,20 @@
 
 /********************** Question 2 ******************/
 
-let cap2 = {
-    firstName: "Steve",
-    sayHi: function (param) {
-        console.log("52", this.firstName);
-        const iAmInner = function (param) {
-            console.log("54", this.firstName);
-        }
-        // EC by this kind of call -> window
-        iAmInner(20);
-    }
-}
+// let cap2 = {
+//     firstName: "Steve",
+//     sayHi: function (param) {
+//         console.log("52", this.firstName);
+//         const iAmInner = function (param) {
+//             console.log("54", this.firstName);
+//         }
+//         // EC by this kind of call -> window
+//         iAmInner(20);
+//     }
+// }
 
 // EC by this -> cap
-cap2.sayHi(10);
+// cap2.sayHi(10);
 
 
 /*****************Question3 *******************/
@@ -81,25 +81,26 @@ cap3.sayHi();
 
 
 /*****************Question4 *******************/
-var firstName = "thanos";
-let cap4 = {
-    firstName: "Steve",
-    sayHi: function () {
-        console.log("91", this.firstName);
-        // arrow ->  does not have it's own this. I am going to cheat it from outside 
-        const subInner = () => {
-            console.log("94", this.firstName);
-            const iAmInner = () => {
-                console.log("95", this.firstName);
-            }
-            iAmInner();
-        }
-        subInner();
-    }
-}
-cap4.sayHi();
+// var firstName = "thanos";
+// let cap4 = {
+//     firstName: "Steve",
+//     sayHi: function () {
+//         console.log("91", this.firstName);
+//         // arrow ->  does not have it's own this. I am going to cheat it from outside 
+//         const subInner = () => {
+//             console.log("94", this.firstName);
+//             const iAmInner = () => {
+//                 console.log("95", this.firstName);
+//             }
+//             iAmInner();
+//         }
+//         subInner();
+//     }
+// }
+// cap4.sayHi();
 
 /*****************Question5 *******************/
+//  Homwork.
 var firstName = "thanos";
 let cap5 = {
     firstName: "Steve",
