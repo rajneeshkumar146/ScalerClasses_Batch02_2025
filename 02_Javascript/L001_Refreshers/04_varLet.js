@@ -36,9 +36,30 @@
 
 
 // statement 2.
-var f = 5;
-function fn() {
-    f = 6;
-}
-fn()
-console.log(f)
+// var f = 5;
+// function fn() {
+//     f = 6;
+// }
+// fn()
+// console.log(f)
+
+// ****************** var ************
+
+// // reassign
+// var a=10
+// a=20;
+
+// // redeclared -> yes 
+// var a=30;
+
+// console.log(b);   // output: undefined
+// var b=10;
+// console.log(b); // output: 10
+
+// ********** let *************
+// // reassign -> yes
+// // redeclaration -> is not possible
+// let a=10;
+// a=20;
+
+// let a = 30;   // throw error.
