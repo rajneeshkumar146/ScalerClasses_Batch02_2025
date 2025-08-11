@@ -21,7 +21,23 @@ let person = {
 // person.sayHi();
 
 function cloneEffective(input) {
+    if(input === null || input === undefined){
+        return input;
+    }else if(typeof input !== 'object'){
+        return input // Primitive data types or Functions.
+    }
 
+    // Either it is an array or an object.
+    let clone = Array.isArray(input) ? [] : {};
+    
+    // copy all the keys and values.
+    for(let key in input){
+        const value = input[key];
+        clone[key] = cloneEffective(value);
+    }
+
+    // return the obj.
+    return clone;
 }
 
 let superDeeplyClonedObj = cloneEffective(person);
@@ -37,3 +53,10 @@ for (let k in superDeeplyClonedObj.friends) {
 }
 
 superDeeplyClonedObj.sayHi();
+
+
+// why does shallow copy exist not deep copy?
+// Answer : We can have array and object that can have 'n' level of nesting an there 
+// size is only limited by js heap so for performance point of view it good to have 
+// shallow copy
+
