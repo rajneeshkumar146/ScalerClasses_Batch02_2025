@@ -171,5 +171,22 @@ console.log("Sum: ", elems.reduce(sum));
 console.log("Product: ", elems.reduce(product));
 
 Array.prototype.myReduce = function (logic, intialValue) {
+    if (this.length === 0) {
+        return intialValue;
+    }
 
+    if (logic === null || logic === undefined) {
+        return intialValue;
+    }
+
+    let result = (intialValue === null || intialValue === undefined) ? this[0] : intialValue;
+    let startingIndex = (intialValue === null || intialValue === undefined) ? 1 : 0;
+
+    for (let i = startingIndex; i < this.length; i++) {
+        result = logic(result, this[i]);
+    }
+    return result;
 }
+
+console.log("My Sum: ", elems.myReduce(sum));
+console.log("My Product: ", elems.myReduce(product));
