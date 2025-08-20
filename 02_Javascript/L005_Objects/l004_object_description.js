@@ -27,10 +27,23 @@ Object.defineProperty(obj, 'test3', {
     enumerable: false
 });
 
+// console.log(obj);
+// for (let key in obj) {
+//     console.log("in loops: ", key);
+// 
+
+
+Object.defineProperty(obj, 'property1', {
+    value: 25,
+    writable: false,    // Not allowed to override its value.
+});
+
+obj.property1 = 100;
+
 console.log(obj);
-for (let key in obj) {
-    console.log("in loops: ", key);
-}
+console.log(obj.property1);
+
+
 
 
 
