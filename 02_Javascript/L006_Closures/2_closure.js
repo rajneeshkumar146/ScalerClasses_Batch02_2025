@@ -20,22 +20,71 @@
 // }
 // fn();
 
-function outerFunction() {
-    console.log("first line of outerfunction: ", count);
-    var count = 0;
-    function innerFunction() {
-        count++;
-        return count
+// function outerFunction() {
+//     console.log("first line of outerfunction: ", count);
+//     var count = 0;
+//     function innerFunction() {
+//         count++;
+//         return count
+//     }
+//     // count = 10;
+//     console.log("second line of outerfunction: ", count);
+//     return innerFunction
+// }
+
+// const innerFunc = outerFunction();
+// console.log(innerFunc());
+// console.log(innerFunc());
+// const innerFunc2 = outerFunction();
+// console.log(innerFunc2());
+// console.log(innerFunc());
+// console.log(innerFunc());
+
+// // Question: 2
+
+// function createCounter(init, delta) {
+//     function count() {
+//         init = init + delta;
+//         return init;
+//     }
+//     return count;
+// }
+// let c1 = createCounter(10, 5);
+// let c2 = createCounter(5, 2);
+
+// console.log(c1())
+// console.log(c2())
+
+// console.log(c1())
+// console.log(c2())
+
+/***
+ * Nested closure : you will get access to outer variable even if the 
+ * outer fn is not your direct parent
+ * */
+
+// // Important example to understand nested closure.
+let iamINGEC = 200;
+function getFirstName(firstName) {
+    console.log("I have got your first Name");
+    return function getLastName(lastName) {
+        console.log("I have got Your last Name");
+        return function getGreeter() {
+            console.log(`Hi I am ${firstName} ${lastName}`);  // closure 
+            console.log("Hi GEC", iamINGEC) // Lexical scope
+            iamINGEC++;
+        }
     }
-    // count = 10;
-    console.log("second line of outerfunction: ", count);
-    return innerFunction
 }
 
-const innerFunc = outerFunction();
-console.log(innerFunc());
-console.log(innerFunc());
-const innerFunc2 = outerFunction();
-console.log(innerFunc2());
-console.log(innerFunc());
-console.log(innerFunc());
+const lnNameRtrn = getFirstName("Rajneesh");
+const greeter = lnNameRtrn("Kumar");
+
+greeter();
+greeter();
+greeter();
+greeter();
+greeter();
+greeter();
+
+console.log("final value: ", iamINGEC);
