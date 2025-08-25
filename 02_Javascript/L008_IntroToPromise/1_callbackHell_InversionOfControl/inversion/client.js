@@ -1,4 +1,4 @@
-const { runMlAlgo } = require("./lib");
+const { runMlAlgo, PromiseRunMlAlgo } = require("./lib");
 
 console.log("Before");
 
@@ -12,5 +12,11 @@ function logicToDeductAmount() {
 }
 
 // runMlAlgo(logicToDeductAmount);
+const promise = PromiseRunMlAlgo();
+promise.then(() => {
+    logicToDeductAmount();
+}).catch((err) => {
+    console.log("error is: " + err);
+});
 
 console.log("After");
