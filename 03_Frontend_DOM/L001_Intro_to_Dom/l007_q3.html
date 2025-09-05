@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Select the element with "Select me" 
+        and make it blue  -->
+    <div class="some-class">
+        <div id="the-one">
+            <p>Random</p>
+            <div>
+                <p class="c1 c2">Random</p>
+            </div>
+            <p class="c1 c2">Select me</p>
+            <div class="c1 c2">Select me</div>
+        </div>
+    </div>
+
+    <div class="some-class">
+        <p class="c1">Random</p>
+        <p class="c1 c2">Random</p>
+        <p class="c1 c2">Random</p>
+    </div>
+</body>
+
+<script>
+
+    const item = document.querySelectorAll("p, div");
+    console.log(item);
+
+    // Brute force solution. O(N), Can you do in O(1).
+    item.forEach(element => {
+        if (element.innerText.trim() === "Select me") {
+            element.style.color = "blue";
+        }
+    });
+
+</script>
+
+</html>

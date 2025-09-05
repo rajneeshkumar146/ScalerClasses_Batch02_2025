@@ -1,0 +1,50 @@
+/****
+ * Garage collection : when an unused type  -> object ,value etc -> they are not in use then
+ * JS's Garbage collector removes it from the memory and frees up the memory for further usage
+ *
+ * Ques How do you define whether a type is unused ->
+ * Mark and sweep algorithm -> identified unused types and then remove them  -> if a type is not
+ * refering to any other type/var/ array
+ *
+ * **/
+
+/***********************
+ * Map and strong refrences
+ *
+ * ******************/
+
+
+// let john = { name: "John" };
+
+// let map = new Map();
+// map.set(john, "hi");
+
+// let john1 = john;
+// john = null;
+
+// console.log("john1: ",john1);
+// console.log("in map",map);
+// console.log("48",map.get(john1));
+
+/****
+ * WeakMap : In weakMap you cannot have primitives a key
+ * weakMap.set(key, value)
+      weakMap.get(key)
+      weakMap.delete(key)
+      weakMap.has(key)
+ *
+ * */
+
+// let john = { name: "John" };
+// let john2 = { name: "steve" };
+
+// let weakMap = new WeakMap();
+
+// weakMap.set(john, "hi");
+// weakMap.set(john2, "Bi");
+
+
+// john = null;
+// console.log("68", weakMap.get(john));
+// console.log("69", weakMap.get(john2));
+

@@ -19,4 +19,16 @@ async function fn() {
 
 fn();
 
+/***consumption of promise*/
+promise
+    .then(function (futureValue) {
+        console.log("Data inside the file is: " + futureValue);
+    })
+
+promise
+    .catch(function (err) {
+        console.log("err", err);
+});
+
+
 
