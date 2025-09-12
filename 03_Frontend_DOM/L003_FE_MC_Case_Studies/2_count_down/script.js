@@ -30,6 +30,11 @@ const secondsInput = document.getElementById("sec");
 let SECONDS_IN_HOUR = 3600;
 let SECONDS_IN_MINUTE = 60;
 
+let MAXIMUM_SECONDS_IN_DAY = 24 * SECONDS_IN_HOUR;
+
+let counterId;
+let saveTimeLeft;
+
 
 resetSetup();
 
@@ -55,9 +60,28 @@ startBtn.addEventListener("click", (event) => {
     continueBtn.style.display = "none";
 });
 
-pauseBtn.addEventListener("click", (e) => { });
+pauseBtn.addEventListener("click", (e) => {
+    // Pause the process.
+    clearInterval(counterId);
 
-continueBtn.addEventListener("click", (e) => { });
+    // No chnage in UI.
+
+    continueBtn.style.display = "block";
+
+    pauseBtn.style.display = "none";
+});
+
+continueBtn.addEventListener("click", (e) => {
+    // Continue the timer from the place where it is stopped.
+    runTimer(saveTimeLeft);
+
+    // No chnage in UI.
+
+    pauseBtn.style.display = "block";
+    resetBtn.style.display = "block";
+
+    continueBtn.style.display = "none";
+});
 
 resetBtn.addEventListener("click", (event) => {
     resetSetup();
@@ -70,6 +94,11 @@ function resetSetup() {
     minutesInput.value = "00";
     secondsInput.value = "00";
 
+    // Reset the process.
+    saveTimeLeft = 0;
+    clearInterval(counterId);
+
+
     startBtn.style.display = "block";
     pauseBtn.style.display = "none";
     continueBtn.style.display = "none";
@@ -79,9 +108,9 @@ function resetSetup() {
 function runTimer(countDownTime) {
     counterId = setInterval(() => {
         updateUiEverySecond(countDownTime);
-        countDownTime--;
+        saveTimeLeft = countDownTime--;
 
-        if(countDownTime < 0){
+        if (countDownTime < 0) {
             clearInterval(counterId);
             return;
         }
@@ -94,7 +123,15 @@ function updateUiEverySecond(countDownTime) {
     let minute = Math.floor((countDownTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE);
     let second = Math.floor(countDownTime % SECONDS_IN_MINUTE);
 
-    console.log(hour + ":" + minute + ":" + second);
+    // console.log(hour + ":" + minute + ":" + second);
+    updateUI_Hour_Min_Sec(hour, minute, second);
+    // return {hourKey: hour, minuteKey: minute, secondKey: second};
+}
+
+function updateUI_Hour_Min_Sec(hour, minute, second) {
+    hoursInput.value = hour < 10 ? `0${hour}` : hour;
+    minutesInput.value = minute < 10 ? `0${minute}` : minute;
+    secondsInput.value = second < 10 ? `0${second}` : second;
 }
 
 function getValidInput(value) {
