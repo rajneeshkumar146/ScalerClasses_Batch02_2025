@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="board">
+      <div class="row" id="row-1">
+        <div class="checkbox" id="1" style="background-color: black"></div>
+        <div class="checkbox" id="2" style="background-color: white"></div>
+        <div class="checkbox" id="3" style="background-color: black"></div>
+        <div class="checkbox" id="4" style="background-color: white"></div>
+        <div class="checkbox" id="5" style="background-color: black"></div>
+        <div class="checkbox" id="6" style="background-color: white"></div>
+        <div class="checkbox" id="7" style="background-color: black"></div>
+        <div class="checkbox" id="8" style="background-color: white"></div>
+      </div>
+
+      <div class="row" id="row-2">
+        <div class="checkbox" id="9" style="background-color: white"></div>
+        <div class="checkbox" id="10" style="background-color: black"></div>
+        <div class="checkbox" id="11" style="background-color: white"></div>
+        <div class="checkbox" id="12" style="background-color: black"></div>
+        <div class="checkbox" id="13" style="background-color: white"></div>
+        <div class="checkbox" id="14" style="background-color: black"></div>
+        <div class="checkbox" id="15" style="background-color: white"></div>
+        <div class="checkbox" id="16" style="background-color: black"></div>
+      </div>
+      <div class="row" id="row-3">
+        <div class="checkbox" id="17" style="background-color: black"></div>
+        <div class="checkbox" id="18" style="background-color: white"></div>
+        <div class="checkbox" id="19" style="background-color: black"></div>
+        <div class="checkbox" id="20" style="background-color: white"></div>
+        <div class="checkbox" id="21" style="background-color: black"></div>
+        <div class="checkbox" id="22" style="background-color: white"></div>
+        <div class="checkbox" id="23" style="background-color: black"></div>
+        <div class="checkbox" id="24" style="background-color: white"></div>
+      </div>
+      <div class="row" id="row-4">
+        <div class="checkbox" id="25" style="background-color: white"></div>
+        <div class="checkbox" id="26" style="background-color: black"></div>
+        <div class="checkbox" id="27" style="background-color: white"></div>
+        <div class="checkbox" id="28" style="background-color: black"></div>
+        <div class="checkbox" id="29" style="background-color: white"></div>
+        <div class="checkbox" id="30" style="background-color: black"></div>
+        <div class="checkbox" id="31" style="background-color: white"></div>
+        <div class="checkbox" id="32" style="background-color: black"></div>
+      </div>
+      <div class="row" id="row-5">
+        <div class="checkbox" id="33" style="background-color: black"></div>
+        <div class="checkbox" id="34" style="background-color: white"></div>
+        <div class="checkbox" id="35" style="background-color: black"></div>
+        <div class="checkbox" id="36" style="background-color: white"></div>
+        <div class="checkbox" id="37" style="background-color: black"></div>
+        <div class="checkbox" id="38" style="background-color: white"></div>
+        <div class="checkbox" id="39" style="background-color: black"></div>
+        <div class="checkbox" id="40" style="background-color: white"></div>
+      </div>
+      <div class="row" id="row-6">
+        <div class="checkbox" id="41" style="background-color: white"></div>
+        <div class="checkbox" id="42" style="background-color: black"></div>
+        <div class="checkbox" id="43" style="background-color: white"></div>
+        <div class="checkbox" id="44" style="background-color: black"></div>
+        <div class="checkbox" id="45" style="background-color: white"></div>
+        <div class="checkbox" id="46" style="background-color: black"></div>
+        <div class="checkbox" id="47" style="background-color: white"></div>
+        <div class="checkbox" id="48" style="background-color: black"></div>
+      </div>
+      <div class="row" id="row-7">
+        <div class="checkbox" id="49" style="background-color: black"></div>
+        <div class="checkbox" id="50" style="background-color: white"></div>
+        <div class="checkbox" id="51" style="background-color: black"></div>
+        <div class="checkbox" id="52" style="background-color: white"></div>
+        <div class="checkbox" id="53" style="background-color: black"></div>
+        <div class="checkbox" id="54" style="background-color: white"></div>
+        <div class="checkbox" id="55" style="background-color: black"></div>
+        <div class="checkbox" id="56" style="background-color: white"></div>
+      </div>
+      <div class="row" id="row-8">
+        <div class="checkbox" id="57" style="background-color: white"></div>
+        <div class="checkbox" id="58" style="background-color: black"></div>
+        <div class="checkbox" id="59" style="background-color: white"></div>
+        <div class="checkbox" id="60" style="background-color: black"></div>
+        <div class="checkbox" id="61" style="background-color: white"></div>
+        <div class="checkbox" id="62" style="background-color: black"></div>
+        <div class="checkbox" id="63" style="background-color: white"></div>
+        <div class="checkbox" id="64" style="background-color: black"></div>
+      </div>
+    </div>
+
+    <script>
+      const dfs = (i, j, dir, limit) => {
+        if (i == 8 || j % 8 == limit) {
+          const box = document.getElementById(`${j}`);
+          box.style.backgroundColor = "red";
+          return;
+        }
+
+        const box = document.getElementById(`${j}`);
+        box.style.backgroundColor = "red";
+        console.log(i, j, j + 9);
+        for (const [dx, dy] of dir) {
+          const nr = i + dx;
+          const nc = j + dy + 8;
+          if (nr >= 1 && nr <= 8 && nc >= 1 && nc <= 64) {
+            dfs(nr, nc, dir, limit);
+          }
+        }
+      };
+
+      const board = document.querySelector(".board");
+      console.log(board, "gggggg");
+      board.addEventListener("click", (e) => {
+        if (e.target.classList.contains("checkbox")) {
+          const parentRowId = e.target.parentElement.getAttribute("id");
+          console.log(parentRowId, "SSSSSSSSS");
+          const parentId = parentRowId.split("-")[1] * 1;
+          const elementId = e.target.getAttribute("id") * 1;
+
+          const left = [[1, -1]];
+          const right = [[1, 1]];
+          dfs(parentId, elementId, left, 1);
+          if (elementId % 8 !== 0) {
+            dfs(parentId, elementId, right, 0);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
