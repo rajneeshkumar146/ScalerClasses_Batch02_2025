@@ -24,8 +24,33 @@
 //     });
 
 
-function getCountries(keyword){
+async function getCountries(keyword) {
+    try {
+        if (!isValidKeyword(keyword)) {
+            console.log(`Please pass a valid keyword: ${keyword} in form of string.`);
+            return [];
+        }
 
+        const rawResponse = await fetch(`https://restcountries.com/v3.1/name/${keyword}`);
+        if (rawResponse.status === 404) {
+            console.log("Page Not Found!");
+            return [];
+        } else if (rawResponse.status === 500) {
+            console.log("Internal Server Error!");
+            return [];
+        }
+
+        console.log("Data Found!");  // 200 Ok response.
+        // If you want you can perform any type of validation using validation method.
+
+        return await rawResponse.json();
+    } catch (err) {
+        console.log("Err: ", err);
+    }
+}
+
+function isValidKeyword(keyword) {
+    return keyword != null && keyword != undefined && typeof keyword === "string" && keyword != "";
 }
 
 
