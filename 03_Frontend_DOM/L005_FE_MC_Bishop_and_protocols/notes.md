@@ -3,9 +3,9 @@ HTTP Methods:
     POST: To add some content to the server.
     PATCH: To update some data on the server.    
     PUT: It is used to replace the content with new content.
+    DELETE: To delete the content from the server.
     OPTIONS: It helps to get you all the communication options or methods.
     CONNECT: Used to pre-connect to the server or for network optimization. Mostly used in the HTTP case to form a TCP connection.
-    DELETE: To delete the content from the server.
 
 Response Code:
 do vist : https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
@@ -22,6 +22,8 @@ Successful responses (200 – 299)
 Redirection messages (300 – 399)
 Client error responses (400 – 499)
 Server error responses (500 – 599)
+
+200, 301, 400, 404, 500, 502
 
 Features of the HTTP protocols:
 The two most basic and important principles of the HTTP are:
