@@ -15,44 +15,52 @@
 
     <!-- transpiler -> JSX -> into javascript -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        .counter {
+            margin-top: 2rem;
+            border-bottom: 2px solid gray;
+            padding-bottom: 1rem;
+        }
+    </style>
 </head>
 
 <body>
 
     <div id="root"></div>
 
+
     <script type="text/babel">
-        function COUNTER() {
-            // let count = 0;  // this will not work, please watch class video for explanation.
 
-            // useState(0) -> 0, is the intial value, it will return a array of size 2,
-            // arr[0] -> state variable.
-            // arr[1] -> setter method of state. (method to update state variable, by using particular method we will change our state).
-            const [count, setCount] = React.useState(0);
+        function COUNTER(props) {
+            const { intialValue, counterNumber } = props;
+            const [count, setCount] = React.useState(intialValue);
 
-            console.log("Rajneesh 1: ", count);
             const increment = () => {
-                // console.log("Rajneesh 11: ", count);
-                // count += 1;
                 setCount(count + 1);
             }
 
             const decrement = () => {
-                // console.log("Rajneesh 12: ", count);
-                // count -= 1;
                 setCount(count - 1);
             }
 
-            console.log("Rajneesh 2: ", count);
-
-            return <div>
+            return <div class="counter">
+                <h2>Counter Number: {counterNumber}</h2>
                 <button onClick={increment}>+</button>
                 <p>{count}</p>
                 <button onClick={decrement}>-</button>
             </div>
         }
 
-        ReactDOM.render(<COUNTER />, document.getElementById("root"));
+        function CounterParent() {
+            return <div>
+                <COUNTER intialValue={3} counterNumber={1} />
+                <COUNTER intialValue={5} counterNumber={2} />
+                <COUNTER intialValue={7} counterNumber={3} />
+            </div>
+        }
+
+        ReactDOM.render(<CounterParent />, document.getElementById("root"));
     </script>
 
 </body>
