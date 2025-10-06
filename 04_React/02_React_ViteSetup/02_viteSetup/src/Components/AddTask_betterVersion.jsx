@@ -1,23 +1,33 @@
 import React from 'react'
+import { useState } from 'react';
 
 function AddTask_betterVersion() {
-    
+    const [taskArr, setTasks] = useState([]);
+
+    const addtask = (inputValue) => {
+        if (inputValue != "" && inputValue != null && inputValue != undefined) {
+            let newTaskArr = [...taskArr, inputValue];
+            setTasks(newTaskArr);
+        }
+    }
+
     return (
         <>
-            <InputBox />
-            <List />
+            <InputBox addTask={addtask} />
+            <List taskArr={taskArr} />
         </>
     )
 }
 
-function InputBox() {
-
+function InputBox(props) {
+    const [inputValue, setInputValue] = useState("");
     const handleUserInput = (event) => {
         setInputValue(event.target.value);
     }
 
     const addTaskToChild = () => {
-        // ?????  
+        props.addTask(inputValue);
+        setInputValue("");
     }
 
     return (
@@ -30,11 +40,11 @@ function InputBox() {
     )
 }
 
-function List() {
+function List(props) {
     return <div className='list'>
         <ul>
             {
-                taskArr.map((task, index) => <li key={index}>{task}</li>)
+                props.taskArr.map((task, index) => <li key={index}>{task}</li>)
             }
         </ul>
     </div>
