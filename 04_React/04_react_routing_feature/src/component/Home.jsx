@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react'
+import basicOps from './utility/basicOps';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,6 +16,8 @@ function Home() {
     })();
   }, []);
 
+  let modifiedArrayOfProducts = basicOps(products, searchTerm);
+
   return (
     <>
       <header className='nav_wrapper'>
@@ -25,10 +28,10 @@ function Home() {
 
       <main className='product_wrapper'>
         {
-          products === null ? <h3>...Loading</h3> :
+          modifiedArrayOfProducts === null ? <h3>...Loading</h3> :
             <>
               {
-                products.map((product) => {
+                modifiedArrayOfProducts.map((product) => {
                   return (
                     <div className='product'>
                       <img src={product.image} alt="" className='product_image'></img>
