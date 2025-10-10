@@ -5,21 +5,43 @@ import basicOps from './utility/basicOps';
 
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+import Categories from './Categories';
+
+const ASCENDING_ORDER_SORTING = 1;
+const DESENDING_ORDER_SORTING = -1;
+const ALL_CATEGORY = "All Categories";
 
 function Home() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState(null);
+  const [categories, setCategories] = useState([]);
 
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortDirection, setSortDirection] = useState(0);
+  const [currCategory, setCurrCategory] = useState(ALL_CATEGORY)
+
+  /********************Getting all the Products *****************/
   useEffect(() => {
     (async function () {
       const response = await fetch(`https://fakestoreapi.com/products`);
       const productData = await response.json();
 
-      setProducts(productData)
+      setProducts(productData);
     })();
   }, []);
 
-  let modifiedArrayOfProducts = basicOps(products, searchTerm);
+  /********************Getting all the categories *****************/
+  useEffect(() => {
+    (async function () {
+      const response = await fetch(`https://fakestoreapi.com/products/categories`);
+      const categorieData = await response.json();
+
+      // setCategories([ALL_CATEGORY, ...categorieData]);
+      setCategories(categorieData);
+    })();
+  }, []);
+
+  let modifiedArrayOfProducts = basicOps(products, searchTerm, sortDirection, currCategory);
 
   return (
     <>
@@ -31,13 +53,20 @@ function Home() {
 
           <div className='icon_container'>
             <ArrowCircleUpIcon style={{ color: "white" }} fontSize="large" onClick={() => {
-              // Sort all the products.
+              setSortDirection(ASCENDING_ORDER_SORTING);
             }} />
 
             <ArrowCircleDownIcon style={{ color: "white" }} fontSize="large" onClick={() => {
-              // Sort all the products.
+              setSortDirection(DESENDING_ORDER_SORTING);
             }} />
           </div>
+        </div>
+
+        <div className='categories_wrapper'>
+          <Categories
+            categories={categories}
+            setCurrCategory={setCurrCategory}
+          />
         </div>
       </header>
 
