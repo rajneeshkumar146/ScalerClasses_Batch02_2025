@@ -5,6 +5,8 @@ import Home from './component/Home'
 import Product from './component/Product'
 import ProductDetails from './component/ProductDetails'
 import PageNotFound from "./component/PageNotFound"
+import Cart from './component/Cart';
+import User from './component/User';
 
 function App() {
 
@@ -14,6 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Navigate to="/" />}></Route>
+
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/user" element={<User />}></Route>
 
         <Route path="/product" element={<Product />}></Route>
         <Route path="/product:id" element={<ProductDetails />}></Route>
