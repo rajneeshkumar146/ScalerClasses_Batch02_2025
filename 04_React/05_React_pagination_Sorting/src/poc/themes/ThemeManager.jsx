@@ -5,14 +5,18 @@ import Footer from './Footer'
 import Header from './Header'
 
 
-function ThemeManager() {
+// 1
+export const ThemeWrapper = React.createContext();
 
+function ThemeManager() {
+    const [currTheme, setCurrTheme] = useState("light");
     const toggleTheme = () => {
-        console.log("Smile please!!!");
+        const newTheme = currTheme.localeCompare("light") === 0 ? "dark" : "light";
+        setCurrTheme(newTheme);
     }
 
-
-    return <>
+    // 2
+    return <ThemeWrapper.Provider value={{ currTheme }}>
         <h1>Theme Manager</h1>
         <button
             onClick={toggleTheme}
@@ -22,8 +26,7 @@ function ThemeManager() {
         <Header />
         <Footer />
         <Article />
-
-    </>
+    </ThemeWrapper.Provider>
 }
 
 export default ThemeManager;
