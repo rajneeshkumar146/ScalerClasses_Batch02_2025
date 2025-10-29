@@ -79,7 +79,7 @@ export default function basicOps(arrayOfProducts, serachTerm, sortDirection, cur
     modifiedArray = categorization(modifiedArray, currCategory);
 
     if(!Array.isArray(modifiedArray)){
-        console.log("You forget to return modified array");
+        console.log("You forget to return/assign to modified array");
     }
 
     return pagination(modifiedArray, pageNum, pageSize);
