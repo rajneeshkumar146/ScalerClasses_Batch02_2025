@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter component test cases Snapshot for Counter 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <button>
+      +
+    </button>
+    <p>
+      Count: 0
+    </p>
+    <button>
+      -
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CounterInput component test cases 0. Snapshot for CounterInput 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="container"
+    >
+      <input
+        type="number"
+        value=""
+      />
+      <button>
+        Reset
+      </button>
+    </div>
+    <br />
+    <div
+      class="container"
+    >
+      <button>
+        +
+      </button>
+      <p>
+        Counter Number  Count :  0
+      </p>
+      <button>
+        -
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CounterInput component test cases Snapshot for CounterInput 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="container"
+    >
+      <input
+        type="number"
+        value=""
+      />
+      <button>
+        Reset
+      </button>
+    </div>
+    <br />
+    <div
+      class="container"
+    >
+      <button>
+        +
+      </button>
+      <p>
+        Counter Number  Count :  0
+      </p>
+      <button>
+        -
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
