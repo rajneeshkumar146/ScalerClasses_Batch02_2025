@@ -1,14 +1,35 @@
 import React from 'react'
 import { Button, Form, Input, message } from "antd";
-import {Link}  from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { RegisterUser } from "../../api/users";
 
 function Register() {
+    const navigate = useNavigate();
+
+    const onFinish = async (values) => {
+        // TODO(rajneesh): Remove this line once development is done.
+        console.log("Register Page while hitting register endpoit, value we recived: ", values);
+        try {
+            const response = await RegisterUser(values);
+            if (response.success) {
+                message.success(response.message);
+                navigate("/login");
+            } else {
+                message.error(response.message);
+            }
+        } catch (err) {
+            console.log("While try to establish a server connection for register endpoint. Something unexted happened. For more details:", err);
+            message.error(err.message);
+        }
+
+    }
+
     return (
         <>
             <main className='App-header'>
                 <h1>Register to BookMyShow</h1>
                 <section className='main-area mw-500 text-center px-3'>
-                    <Form layout='vertical'>
+                    <Form layout='vertical' onFinish={onFinish}>
                         <Form.Item
                             label="Name"
                             htmlFor="name"
