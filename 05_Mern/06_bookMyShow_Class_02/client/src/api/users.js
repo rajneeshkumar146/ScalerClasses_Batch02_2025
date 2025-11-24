@@ -26,6 +26,8 @@ export const RegisterUser = async (value) => {
 
 export const GetCurrentUser = async (value) => {
     try {
+        const response = await axiosInstance.get("api/users/get-current-user/:id");
+        return response.data;
 
     } catch (err) {
         console.log("Error occuered at client side endpoint, while getting the user:", err);

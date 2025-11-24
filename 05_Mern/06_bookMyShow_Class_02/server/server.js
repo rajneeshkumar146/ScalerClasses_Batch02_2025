@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const express = require("express");
 
+// To access env file.
+require('dotenv').config();
+
 // Constants
 const PORT = 8082;
 const HOST = "localhost";
