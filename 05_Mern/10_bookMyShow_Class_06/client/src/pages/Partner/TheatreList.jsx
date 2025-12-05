@@ -25,7 +25,6 @@ function TheatreList() {
 
       if (response.success) {
         const alltheatres = response.data;
-        // A temporary Key will be created to uniquely identify the theatre.
         setTheatres(
           alltheatres.map(function (theatre) {
             return { ...theatre, key: `theatre${theatre._id}` };

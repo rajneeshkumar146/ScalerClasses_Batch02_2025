@@ -48,7 +48,6 @@ const deleteTheatre = async (req, res) => {
 // GET
 const getAllTheatre = async (req, res) => {
     try {
-        // https://mongoosejs.com/docs/populate.html
         const allTheatres = await Theatre.find().populate("owner");
         console.log("Read all theatres", allTheatres);
         res.send({
@@ -65,7 +64,6 @@ const getAllTheatre = async (req, res) => {
 
 }
 
-// Or getTheathreByPartner.
 const getTheatreByOwner = async (req, res) => {
     try {
         const allTheatres = await Theatre.find({ owner: req.params.ownerId });
