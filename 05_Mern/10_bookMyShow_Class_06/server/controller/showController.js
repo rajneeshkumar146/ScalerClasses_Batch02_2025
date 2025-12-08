@@ -52,6 +52,7 @@ const deleteShow = async (req, res) => {
 }
 
 // GET
+// O(N)
 const getShowsByTheathres = async (req, res) => {
     try {
         const shows = await Show.find({ theatre: req.body.theatreId }).populate(
@@ -71,6 +72,7 @@ const getShowsByTheathres = async (req, res) => {
     }
 }
 
+// O(show * show)
 const getAllTheathresByMovie = async (req, res) => {
 
     /**
@@ -88,9 +90,11 @@ const getAllTheathresByMovie = async (req, res) => {
     try {
 
         const { movie, date } = req.body;
+        // O(shows) + O(delta)
         const shows = await Show.find({ movie, date }).populate("theatre");
         // Filter out the unique theatre.
         const uniqueTheatres = [];
+        // O(show * show)
         shows.forEach((show) => {
             const isTheatreAlreadyPresentInMap = uniqueTheatres.find((theatre) => theatre._id === show.theatre._id);
 

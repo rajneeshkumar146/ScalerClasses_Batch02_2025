@@ -71,16 +71,16 @@ router.post("/book-show", auth, async (req, res) => {
 
         console.log("This is populated Booking: ", populatedBooking);
 
-        await EmailHelper("ticketTemplate.html", populatedBooking.user.email, {
-            name: populatedBooking.user.name,
-            movie: populatedBooking.show.movie.title,
-            theatre: populatedBooking.show.theatre.name,
-            date: populatedBooking.show.date,
-            time: populatedBooking.show.time,
-            seats: populatedBooking.seats,
-            amount: populatedBooking.seats.length * populatedBooking.show.ticketPrice,
-            transactionid: populatedBooking.transactionId
-        });
+        // await EmailHelper("ticketTemplate.html", populatedBooking.user.email, {
+        //     name: populatedBooking.user.name,
+        //     movie: populatedBooking.show.movie.title,
+        //     theatre: populatedBooking.show.theatre.name,
+        //     date: populatedBooking.show.date,
+        //     time: populatedBooking.show.time,
+        //     seats: populatedBooking.seats,
+        //     amount: populatedBooking.seats.length * populatedBooking.show.ticketPrice,
+        //     transactionid: populatedBooking.transactionId
+        // });
 
         res.send({
             success: true,
@@ -96,7 +96,7 @@ router.post("/book-show", auth, async (req, res) => {
     }
 });
 
-router.get("/get-all-bookings", auth, async (req, res) => {
+router.get("/get-all-bookings/:userId", auth, async (req, res) => {
     try {
         const bookings = await Booking.find({ user: req.body.userId })
             .populate("user")
@@ -112,7 +112,7 @@ router.get("/get-all-bookings", auth, async (req, res) => {
                 path: "show",
                 populate: {
                     path: "theatre",
-                    model: "theatres",
+                    model: "theatre",
                 },
             });
         res.send({

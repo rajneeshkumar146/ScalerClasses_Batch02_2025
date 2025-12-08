@@ -24,9 +24,9 @@ export const bookShow = async (payload) => {
   }
 };
 
-export const getAllBookings = async () => {
+export const getAllBookings = async (payload) => {
   try {
-    const response = await axiosInstance.get("/api/bookings/get-all-bookings");
+    const response = await axiosInstance.get(`/api/bookings/get-all-bookings/${payload.userId}`);
     return response.data;
   } catch (err) {
     console.log("Error while getting all bookings", err);

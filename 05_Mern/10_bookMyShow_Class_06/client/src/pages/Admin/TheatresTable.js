@@ -34,6 +34,7 @@ const TheatresTable = () => {
             dispatch(ShowLoading);
             let values = {
                 ...theatres,
+                // Not a mendantory. 
                 theatreId: theatre._id,
                 isActive: !theatre.isActive,
             };

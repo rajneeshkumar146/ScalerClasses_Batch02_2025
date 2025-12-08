@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const theatreSchema = new mongoose.Schema(
     {
-        // Name of theathre.
         name: {
             type: String,
             required: true,
@@ -19,11 +18,11 @@ const theatreSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        // Owner of the theatre or should we partner.
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "users",
         },
-        // Current theathre is approved by admin or not.
         isActive: {
             type: Boolean,
             default: false,
