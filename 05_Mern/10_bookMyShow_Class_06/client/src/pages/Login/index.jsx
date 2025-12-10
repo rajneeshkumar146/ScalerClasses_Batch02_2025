@@ -80,6 +80,9 @@ function Login() {
           <p>
             New User? <Link to="/register">Register Here</Link>
           </p>
+          <p>
+            Forget Password? <Link to="/forget">Rest Password</Link>
+          </p>
         </div>
       </section>
     </main>

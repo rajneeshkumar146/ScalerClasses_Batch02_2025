@@ -9,6 +9,9 @@ import Profile from "./pages/Profile";
 import Partner from "./pages/Partner";
 import SingleMovie from "./pages/Home/SingleMovie";
 import BookShow from './pages/Home/BookShow';
+import Forget from './pages/Profile/Forget';
+import Reset from './pages/Profile/Reset';
+
 
 import { Provider } from "react-redux";
 import store from './redux/store';
@@ -25,6 +28,8 @@ function App() {
 
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+            <Route path="/forget" element={<Forget />}></Route>
+            <Route path="/reset/:email" element={<Reset />}></Route>
 
             <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}></Route>
 
