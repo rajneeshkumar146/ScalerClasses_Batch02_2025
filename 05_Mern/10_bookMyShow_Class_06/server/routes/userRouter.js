@@ -3,8 +3,8 @@ const auth = require("../middlewares/authMiddleware")
 const {
     register,
     login,
-    getCurrentUser 
-}   = require("../controller/userController");
+    getCurrentUser
+} = require("../controller/userController");
 
 const userRouter = express.Router();
 
@@ -14,6 +14,14 @@ userRouter.post("/register", register);
 userRouter.post("/login", login);
 
 // GET
-userRouter.get("/get-current-user", auth,getCurrentUser);
+userRouter.get("/get-current-user", auth, getCurrentUser);
+
+userRouter.patch("/forgetpassword", async function (req, res) {
+
+});
+
+userRouter.patch("/resetpassword/:email", async function (req, res) {
+    
+});
 
 module.exports = userRouter;
