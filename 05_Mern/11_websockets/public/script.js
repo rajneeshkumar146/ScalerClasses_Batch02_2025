@@ -50,8 +50,56 @@ socket.on("broadcast", (data) => {
 });
 
 
-grpBtn.addEventListener("click", () => { });
+grpBtn.addEventListener("click", () => {
+    console.log("Group created req!");
+    socket.emit("create_grp", Math.random(0, 1) * 1000);
+});  // Random Room number.
 
-joinGrp.addEventListener("click", () => { });
+joinGrp.addEventListener("click", () => {
+    console.log("Room join request!");
+    socket.emit("join_room");
+});
 
-leaveRoomBtn.addEventListener("click", () => { });
+stg.addEventListener("click", () => {
+    const value = input.value;
+    if (value === "") {
+        return;
+    }
+
+    const div = document.createElement("div");
+    div.setAttribute("class", "Group sender");
+    const li = document.createElement("li");
+    li.innerText = value;
+
+    const para = document.createElement("p");
+    para.innerText = "sender";
+
+    div.appendChild(para);
+    div.appendChild(li);
+    ul.appendChild(div);
+
+    input.value = "";
+    console.log("Group message: ", value);
+    socket.emit("grp_message", value);
+});
+
+socket.on("serv_grp_message", function (data) {
+    console.log("brodcasted message: ", data);
+
+    const div = document.createElement("div");
+    div.setAttribute("class", "Group receiver");
+    const li = document.createElement("li");
+
+    li.innerText = data;
+
+    const para = document.createElement("p");
+    para.innerText = "receiver";
+
+    div.appendChild(para);
+    div.appendChild(li);
+    ul.appendChild(div);
+});
+
+leaveRoomBtn.addEventListener("click", () => {
+    socket.emit("leave_grp")
+});
